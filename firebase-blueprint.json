@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A product in the cafe menu.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Name of the product" },
+        "price": { "type": "number", "description": "Price of the product" },
+        "unit": { "type": "string", "description": "Unit of the product (e.g., cup, piece)" },
+        "detail": { "type": "string", "description": "Description of the product" },
+        "image": { "type": "string", "description": "URL of the product image" },
+        "status": { "type": "string", "enum": ["In Stock", "Sold Out"], "description": "Availability status" },
+        "category": { "type": "string", "description": "Category of the product" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["title", "price", "category"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "A sales transaction record.",
+      "type": "object",
+      "properties": {
+        "items": { "type": "array", "items": { "type": "object" }, "description": "List of items in the transaction" },
+        "totalAmount": { "type": "number", "description": "Total amount of the transaction" },
+        "paymentMethod": { "type": "string", "enum": ["Cash", "QR Code", "Credit Card"], "description": "Method of payment" },
+        "cashReceived": { "type": "number", "description": "Amount of cash received (if applicable)" },
+        "change": { "type": "number", "description": "Amount of change given (if applicable)" },
+        "timestamp": { "type": "string", "format": "date-time", "description": "Transaction timestamp" }
+      },
+      "required": ["items", "totalAmount", "paymentMethod", "timestamp"]
+    },
+    "StoreSettings": {
+      "title": "StoreSettings",
+      "description": "Store information and settings.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Store name" },
+        "address": { "type": "string", "description": "Store address" },
+        "phone": { "type": "string", "description": "Store phone number" },
+        "taxId": { "type": "string", "description": "Store tax ID" },
+        "logoUrl": { "type": "string", "description": "URL of the store logo" }
+      },
+      "required": ["name", "address", "phone"]
+    }
+  },
+  "firestore": {
+    "/cafe": {
+      "schema": "Product",
+      "description": "Collection of cafe products."
+    },
+    "/transactions": {
+      "schema": "Transaction",
+      "description": "Collection of sales transactions."
+    },
+    "/settings": {
+      "schema": "StoreSettings",
+      "description": "Store settings and configuration."
+    }
+  }
+}

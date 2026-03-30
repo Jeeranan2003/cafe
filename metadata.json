@@ -1,0 +1,5 @@
+{
+  "name": "Cafe POS System",
+  "description": "A modern Point of Sale system for a cafe with Firebase Authentication and Firestore integration.",
+  "requestFramePermissions": []
+}
